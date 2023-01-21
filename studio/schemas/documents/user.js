@@ -1,7 +1,7 @@
 export default {
     title: 'User',
     name: 'user',
-    type: 'docuemnt',
+    type: 'document',
     fields: [
         {
             title: 'Username',
@@ -22,6 +22,19 @@ export default {
             name: 'password',
             type: 'string',
             validation: Rule => Rule.required().min(1).error('Must have password')
+        },
+
+        {
+            title: 'Slug',
+            name: 'slug',
+            type: 'slug',
+            options: {
+                source: 'username',
+                slugify: input => input
+                         .toLowerCase()
+                         .replace(/\s+/g, '-')
+                         .slice(0, 200)
+            }
         }
     ]
 }

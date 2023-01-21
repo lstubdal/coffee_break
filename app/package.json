@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lstubdal/vue_boilerplate#readme",
   "dependencies": {
+    "@sanity/client": "^4.0.1",
     "@vue/cli": "^5.0.8",
     "axios": "^1.2.1",
     "firebase": "^9.15.0",

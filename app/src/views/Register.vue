@@ -62,13 +62,12 @@
 
             addUserToSanity() {
                 console.log("Clicked")
-                /* this.createOrUpdateUser(
-                    " ",
+                this.createUser(
                     this.username, 
                     this.email, 
                     this.password,
-                    this.slug()
-                ) */
+                    this.createSlug()
+                )
             },
 
             createSlug() {
