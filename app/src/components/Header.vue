@@ -4,7 +4,7 @@
 
         <div class="header__user">
             <div class="header__user--loggedIn" v-if="user.loggedIn">
-                <p class="header__user">Heisann, <b>{{ firstName }}</b>!</p>
+                <p class="header__user">Heisann, <b>{{ getUserName }}</b>!</p>
                 <button @click.prevent="logOut">Log out</button>
             </div>
             
@@ -29,10 +29,10 @@
                 return this.$store.getters.getUser
             },
 
-            firstName() {
+            getUserName() {
                 if (this.user) {
-                    const fullName = this.user.data.displayName.split(" ")
-                    return fullName[0]
+                    return this.user.data.displayName
+                    
                 }
             }
         },

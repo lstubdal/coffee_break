@@ -39,7 +39,6 @@ export default {
             if (response) {
                 context.commit('SET_USER', response.user) // if successfull, update users data
                 updateProfile(response.user, { displayName: name})
-                // console.log("HVA HAR VI HER EGENTLIG?: ", response.user )
             } else {
                 throw new Error('Sorry, unable to register user :(')
             }

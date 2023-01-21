@@ -3,17 +3,17 @@
         <form action="#" @submit.prevent="registerUser"> 
             <h2>Sign up</h2>
             <div class="register__field">
-                <label for="name" class="name">Name</label>
-                <input id="name" type="name" name="name" v-model="name" value required autofocus />
+                <label for="username" class="username">Username</label>
+                <input id="username" type="username" name="username" v-model="username" value required autofocus />
             </div>
 
             <div class="register__field">
-                <label for="email" class="email">email</label>
+                <label for="email" class="email">Email</label>
                 <input id="email" type="email" name="email" v-model="email" value required autofocus />
             </div>
 
             <div class="register__field">
-                <label for="password" class="password">password</label>
+                <label for="password" class="password">Password</label>
                 <input id="password" type="password" name="password" v-model="password" readonly onfocus="this.removeAttribute('readonly');" value required autofocus />
             </div>
 
@@ -29,12 +29,16 @@
 </template>
  
  <script>
-     export default {
+    import sanityMixin from '../mixins/sanityMixin'
+
+    export default {
+        mixins: [sanityMixin],
+
         data() {
             return {
                 email: "",
                 password: "",
-                name: "",
+                username: "",
                 error: ""
             }
         },
@@ -45,15 +49,33 @@
                     await this.$store.dispatch('register', {
                         email: this.email,
                         password: this.password,
-                        name: this.name
+                        name: this.username
                     })
                     this.$router.push('/')
                 }  
                 catch (err) {
                     this.error = err.message
                 }
-            }
-        }
+
+                this.addUserToSanity()
+            },
+
+            addUserToSanity() {
+                console.log("Clicked")
+                /* this.createOrUpdateUser(
+                    " ",
+                    this.username, 
+                    this.email, 
+                    this.password,
+                    this.slug()
+                ) */
+            },
+
+            createSlug() {
+                const slug = this.username.replaceAll(' ', '-');
+                return slug.toLowerCase();
+            },
+         }
      }
  </script>
 <style>
