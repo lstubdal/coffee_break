@@ -51,7 +51,7 @@
                         password: this.password,
                         name: this.username
                     })
-                    this.$router.push('/')
+                    this.$router.push(`/${this.user.data.displayName}`)
                 }  
                 catch (err) {
                     this.error = err.message
@@ -61,7 +61,6 @@
             },
 
             addUserToSanity() {
-                console.log("Clicked")
                 this.createUser(
                     this.username, 
                     this.email, 
@@ -74,7 +73,13 @@
                 const slug = this.username.replaceAll(' ', '-');
                 return slug.toLowerCase();
             },
-         }
+        },
+
+        computed: {
+            user() {
+                return this.$store.getters.getUser
+            }
+        }
      }
  </script>
 <style>

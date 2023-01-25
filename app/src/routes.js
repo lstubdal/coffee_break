@@ -19,13 +19,13 @@ export default [
         name: 'register',
         path: '/register',
         component: Register
-    }
+    },
 
-   /*  {
+    {
         name: 'profile',
-        path: '/profile',
+        path: '/:username',
         component: Profile
-    } */
+    }
 
 ];
 
