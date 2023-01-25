@@ -40,17 +40,24 @@
                         email: this.email,
                         password: this.password
                     })
-                    this.$router.push('/') // go to dashboard
+                    this.$router.push(`/${this.user.data.displayName}`) // go to dashboard
                 }
                 catch(err) {
                     this.error = err.message
                 }
+            }
+        },
+
+        computed: {
+            user() {
+                return this.$store.getters.getUser
             }
         }
      }
  </script>
 <style>
     .login {
+        margin-top: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
