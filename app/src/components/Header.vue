@@ -1,16 +1,17 @@
 <template>
     <header class="header">
         <Router-Link :to="{ name: 'dashboard' }" class="header__logo">
-            <h1>BOOKWORMS</h1>
+            <h1 class="header--loggedIn" v-if="user.loggedIn">BW</h1>
+            <h1  v-else>BOOKWORMS</h1>
         </Router-Link>
 
         <div class="header__user">
             <div class="header__user--loggedIn" v-if="user.loggedIn">
-                <p class="header__user">Hello, <b>{{ getUserName }}</b></p>
+                <p class="header__user">Hello, <span class="header__user--name">{{ getUserName }}</span></p>
                 <button @click.prevent="logOut">Log out</button>
             </div>
             
-            <Router-Link :to="{name: 'login'}" v-else class="header__user--notLoggedIn">Log in/Sign up</Router-Link>
+            <Router-Link :to="{name: 'login'}" v-else class="header__user--notLoggedIn">Login</Router-Link>
         </div>
     </header>
  </template>
@@ -62,13 +63,18 @@
     }
 
     .header {
-        width: 100%;
         position: absolute;
         top: 0;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         padding: 20px;
         font-family: var(--second-font);
+        background-color: transparent;
+    }
+
+    .header--loggedIn {
+        font-size: 1em;
     }
 
     .header__user--loggedIn {
@@ -86,15 +92,33 @@
         border-radius: 2px;
     }
 
+    .header__user--name {
+        font-weight: 600;
+    }
+
+    .header__user--loggedIn > button:hover {
+        color: var(--highlight);
+        border-color: var(--highlight);
+        cursor: pointer;
+    }
+
     .header__user--notLoggedIn {
         margin: 15px;
-        padding: 5px;
-        border: 2px solid orange;
-        color: black;
-        background-color: orange;
+        padding: 8px 35px;
+        color: var(--highlight);
+        border: 2px solid var(--highlight);
+        background-color:none;
         text-decoration: none;
-        font-family: Arial, Helvetica, sans-serif;
-        border-radius: 4px;
+        font-family: var(--second-font);
+        font-weight: 500;
+        font-size: 1.2em;
+        border-radius: 2px;
+    }
+
+    .header__user--notLoggedIn:hover {
+        color: white;
+        border: 2px solid var(--highlight);
+        background-color: var(--highlight);
     }
 
     .header__logo {
