@@ -1,10 +1,12 @@
 <template>
     <header class="header">
-        <Router-Link :to="{ name: 'dashboard' }" class="header__logo">LH</Router-Link>
+        <Router-Link :to="{ name: 'dashboard' }" class="header__logo">
+            <h1>BOOKWORMS</h1>
+        </Router-Link>
 
         <div class="header__user">
             <div class="header__user--loggedIn" v-if="user.loggedIn">
-                <p class="header__user">Heisann, <b>{{ getUserName }}</b>!</p>
+                <p class="header__user">Hello, <b>{{ getUserName }}</b></p>
                 <button @click.prevent="logOut">Log out</button>
             </div>
             
@@ -44,14 +46,13 @@
             }
         }
     }
- </script>
-<style>
-    .header {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px;
-    }
+</script>
 
+<style>
+    h1 {
+        font-weight: 400;
+        font-size: 2.8em;
+    }
     nav > ul {
         display: flex;
     }
@@ -60,13 +61,29 @@
         list-style: none;
     }
 
+    .header {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        font-family: var(--second-font);
+    }
+
     .header__user--loggedIn {
         display: flex;
     }
 
     .header__user--loggedIn > button {
-        padding:01px 8px;
-        margin-left: 10px;
+        padding: 5px 23px 5px 23px;
+        margin-left: 30px;
+        margin-top: -5px;
+        font-family: var(--second-font);
+        font-size: 0.9em;
+        background: none;
+        border: 1px solid;
+        border-radius: 2px;
     }
 
     .header__user--notLoggedIn {
