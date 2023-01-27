@@ -1,6 +1,8 @@
 <template>
    <div class="profile">
       <p>Your recommended books</p>
+
+      <RouterLink :to="{name: 'recommendation'}">Recommend a book!</RouterLink>
    </div>
  </template>
  
@@ -26,6 +28,6 @@
       font-size: 3em;
       padding: 100px;
       height: 100%;
-      background-color: #EAE3D9;
+      background-color: #f7f4ef;
    }
 </style> 
