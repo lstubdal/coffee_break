@@ -13,7 +13,7 @@
             <input id="description" type="text" placeholder="Short description" v-model="description" class="bookInfo__input" />
 
             <select id="category" @change="getCategory()">
-                <option value="selectCategory">Select genre of book</option>
+                <option value="selectCategory">Genre of the book...</option>
                 <option :value="genre" v-for="genre in genres">{{ genre }}</option>
             </select>
 
@@ -72,7 +72,7 @@
                 </div>
             </section>
 
-            <button @click="share">SHARE</button>
+            <button class="recommendation__share" @click="share">Share book</button>
         </div>
     </div>
 </template>
@@ -86,8 +86,8 @@
                 category: '',
                 rating: '',
                 genres: ['Fantasy', 'Romance', 'Dystopian', 'Mystery', 'Thriller/Horror', 'Sci-fi', 'Self-help', 'Art', 'Health', 'History', 'Motivational' ],
-                diceHeight: 52,
-                diceWidth: 55,
+                diceHeight: 40,
+                diceWidth: 40,
                 // image?
             }
         },
@@ -112,12 +112,31 @@
 <style>
     .recommendation {
         padding: 100px;
+        font-family: var(--second-font);
+    }
+
+    .recommendation__share {
+        margin-top: 30px;
+        padding: 12px 25px;
+        background: var(--highlight);
+        border: 1px solid var(--highlight);
+        border-radius: 2px;
+        color: white;
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+    .recommendation__share:hover {
+        background-color: white;
+        color: var(--highlight);
+        border: 4px solid var(--highlight);
     }
 
     .bookInfo {
         display: flex;
         align-items: center;
         flex-direction: column;
+        font-family: var(--second-font);
     }
 
     .bookInfo__label {
@@ -125,33 +144,35 @@
     }
 
     .bookInfo__input {
-        margin: 10px;
+        margin-bottom: 25px;
         padding: 5px;
     }
 
     .bookInfo > select {
         margin: 10px;
-        padding: 10px;
+        padding: 10px 15px;
     }
 
     .rating {
           display: flex;
           flex-direction: column;
           align-items: center;
+          font-family: var(--second-font);
+          margin-top: 20px;
       }
   
       .rating__title {
           color: var(--dark);
-          font-family: var(--main-font);
-          font-size: 1.8em;
-          margin-bottom: var(--margin-small);
+          font-size: 1em;
+          margin-bottom: 10px;
       }
   
       .rating__dice {
           background: none;
           border: none;
-          padding: var(--padding-small);
+          padding: 7px;
           cursor: pointer;
+          opacity: 80%;
       }
   
       .rating__dice:hover {
