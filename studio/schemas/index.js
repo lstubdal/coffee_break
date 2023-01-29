@@ -1,3 +1,5 @@
-import user from './documents/user';
+import user from './documents/user'
+import book from './documents/book'
 
-export const schemaTypes = [user]
+
+export const schemaTypes = [user, book]

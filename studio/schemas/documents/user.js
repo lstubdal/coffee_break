@@ -35,6 +35,18 @@ export default {
                          .replace(/\s+/g, '-')
                          .slice(0, 200)
             }
+        },
+
+        {
+            title: 'Your recommended books',
+            name: 'books',
+            type: 'array',
+            of: [
+            {
+                type: 'reference',
+                to: {type: 'book'}
+            }
+        ] 
         }
     ]
 }
