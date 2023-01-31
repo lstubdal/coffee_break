@@ -1,6 +1,6 @@
-*[_type == 'user'] | order(username) {
+*[_type == 'user' && username == $username][0] {
   _id,
   _updatedAt,
   username,
-  books[] ->
+  books[] ->    
 }

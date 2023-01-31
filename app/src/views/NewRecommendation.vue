@@ -109,11 +109,21 @@
 
         methods: {
             async share() {
-                // fetch all users data from sanity
+                // fetch user data from sanity
                 await this.sanityFetch(userQuery, {
                     username: this.user.data.displayName
                 }) 
+                
+                // access user id and store value in variable
 
+                /* 
+                    - create book
+                    - append book to users array (append)
+                */
+               
+                this.userId = this.result._id
+
+                console.log('USERID', this.userId)
                 console.log('result', this.result) 
                 console.log('USER FIREBASE', this.user)
                 console.log(this.title, this.author, this.description);
