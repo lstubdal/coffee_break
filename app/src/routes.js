@@ -1,14 +1,16 @@
-import Dashboard from './views/Dashboard.vue'
+import Dashboard from './views/Dashboard.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
-import Profile from './views/Profile.vue'
+import Profile from './views/Profile.vue';
+import NewRecommendation from './views/NewRecommendation.vue';
 
 export default [
     {
         name: 'dashboard',
-        path: '/',
+        path: '/dashboard',
         component: Dashboard
     },
+    
 	{
         name: 'login',
         path: '/login',
@@ -25,6 +27,12 @@ export default [
         name: 'profile',
         path: '/:username',
         component: Profile
+    },
+
+    {
+        name: 'recommendation',
+        path: '/recommendation',
+        component: NewRecommendation
     }
 
 ];
