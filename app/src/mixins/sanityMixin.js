@@ -1,4 +1,4 @@
-import user from "../../../studio/schemas/documents/user"
+
 import sanity from "../sanity"
 
 export default {
@@ -11,13 +11,12 @@ export default {
     },
 
     methods: {
-        createUser(username, email, password, slug) {
+        createUser(username, email, password) {
             const newUser = {
                 _type: 'user',
                 username: username,
                 email: email,
                 password: password,
-                slug: slug
             }
             
             sanity.create(newUser).then((res) => {

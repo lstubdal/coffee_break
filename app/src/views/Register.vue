@@ -65,14 +65,13 @@
                     this.username, 
                     this.email, 
                     this.password,
-                    this.createSlug()
                 )
             },
 
-            createSlug() {
+/*             createSlug() {
                 const slug = this.username.replaceAll(' ', '-');
                 return slug.toLowerCase();
-            },
+            }, */
         },
 
         computed: {
@@ -83,23 +82,24 @@
      }
  </script>
 <style>
-.register {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    font-family: Arial, Helvetica, sans-serif;
-}
+    .register {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        font-family: var(--second-font);
+        margin-top: 200px;
+    }
 
-.register__field {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
+    .register__field {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
 
-.register__submit {
-    margin: 10px;
-    padding: 1px 8px;
-}
+    .register__submit {
+        margin: 10px;
+        padding: 1px 8px;
+    }
 </style> 
