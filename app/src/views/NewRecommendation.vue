@@ -84,10 +84,12 @@
     export default {
         mixins: [sanityMixin],
 
-        async created() {
-            // fetch user data from sanity
-            await this.sanityFetch(userQuery) // fetch user
-            console.log('result', this.result)
+        created() {
+             // get the current user by setting an observer on the Auth object:
+            const auth = getAuth()
+            auth.onAuthStateChanged(user => {
+                this.$store.dispatch('fetchUser', user)
+            })
         },
 
         data() {
@@ -106,16 +108,30 @@
         },
 
         methods: {
-            share() {
+            async share() {
+                // fetch all users data from sanity
+                await this.sanityFetch(userQuery, {
+                    username: this.user.data.displayName
+                }) 
+
+                console.log('result', this.result) 
+                console.log('USER FIREBASE', this.user)
                 console.log(this.title, this.author, this.description);
             },
 
+            // error with target
             getCategory(event) {
                 return this.category = event.target.value;
             },
 
             getRating(event) {
-                return this.rating = event.currentTarget.value
+                return this.rating = event.currentTarget.value;
+            }
+        },
+
+        computed: {
+            user() {
+                return this.$store.getters.getUser
             }
         }
     }
