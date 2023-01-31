@@ -77,7 +77,19 @@
     </div>
 </template>
 <script>
+    import { getAuth } from 'firebase/auth';
+    import userQuery from '../groq/user.groq?raw';
+    import sanityMixin from '../mixins/sanityMixin';
+
     export default {
+        mixins: [sanityMixin],
+
+        async created() {
+            // fetch user data from sanity
+            await this.sanityFetch(userQuery) // fetch user
+            console.log('result', this.result)
+        },
+
         data() {
             return {
                 title: '',
@@ -88,6 +100,7 @@
                 genres: ['Fantasy', 'Romance', 'Dystopian', 'Mystery', 'Thriller/Horror', 'Sci-fi', 'Self-help', 'Art', 'Health', 'History', 'Motivational' ],
                 diceHeight: 40,
                 diceWidth: 40,
+                userId: ''
                 // image?
             }
         },
@@ -98,12 +111,10 @@
             },
 
             getCategory(event) {
-                console.log(event.target.value)
                 return this.category = event.target.value;
             },
 
             getRating(event) {
-                console.log(event.currentTarget.value)
                 return this.rating = event.currentTarget.value
             }
         }

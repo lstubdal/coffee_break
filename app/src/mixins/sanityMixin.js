@@ -5,12 +5,17 @@ export default {
     data() {
         return {
             loading: true,
-            updated: false,
-            users: null
+            result: null,
+            updated: false
         }
     },
 
     methods: {
+        async sanityFetch(query, params){
+            this.result = await sanity.fetch(query, params); 
+            this.loading = false;
+        },
+
         createUser(username, email, password) {
             const newUser = {
                 _type: 'user',

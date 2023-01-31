@@ -1,0 +1,6 @@
+*[_type == 'user'] | order(username) {
+  _id,
+  _updatedAt,
+  username,
+  books[] ->
+}
