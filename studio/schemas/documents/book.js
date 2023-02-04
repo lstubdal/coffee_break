@@ -1,4 +1,5 @@
 import rating from "./rating"
+import category from "./category"
 
 export default {
     title: 'Book',
@@ -25,6 +26,18 @@ export default {
             type: 'text',
             description: 'What makes the book worth sharing?',
             validation: Rule => Rule.required().min(5).error('Book must have a description')
+        },
+
+        {
+            title: 'Book category',
+            name: 'category',            
+            description: 'Choose the books category',
+            type: 'string',
+            options: {
+                list: [
+                    ...category
+                ]
+            }
         },
 
         {
