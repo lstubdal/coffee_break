@@ -12,7 +12,7 @@
             <label for="description" class="bookInfo__label">Why do you recommend the book?</label>
             <input id="description" type="text" placeholder="Short description" v-model="description" class="bookInfo__input" />
 
-            <select id="category" @change="getCategory()">
+            <select id="category" @change="getCategory">
                 <option value="selectCategory">Genre of the book...</option>
                 <option :value="genre" v-for="genre in genres">{{ genre }}</option>
             </select>
@@ -83,13 +83,13 @@
 
     export default {
         mixins: [sanityMixin],
-
-        created() {
-             // get the current user by setting an observer on the Auth object:
+        created () {
+             // get the current user (frorm firebase) by setting an observer on the Auth object:
             const auth = getAuth()
             auth.onAuthStateChanged(user => {
                 this.$store.dispatch('fetchUser', user)
-            })
+
+            })            
         },
 
         data() {
@@ -99,43 +99,90 @@
                 description: '',
                 category: '',
                 rating: '',
-                genres: ['Fantasy', 'Romance', 'Dystopian', 'Mystery', 'Thriller/Horror', 'Sci-fi', 'Self-help', 'Art', 'Health', 'History', 'Motivational' ],
+                genres: ['Fantasy', 'Romance', 'Novel', 'Dystopian', 'Mystery', 'Thriller/Horror', 'Sci-fi', 'Self-help', 'Art', 'Health & Lifestyle', 'History', 'Motivational' ],
                 diceHeight: 40,
                 diceWidth: 40,
-                userId: ''
+                userID: '',
+                username: '',
+                key: '',
+                bookID: ''
                 // image?
             }
         },
 
         methods: {
             async share() {
-                // fetch user data from sanity
-                await this.sanityFetch(userQuery, {
-                    username: this.user.data.displayName
-                }) 
-                
-                // access user id and store value in variable
+                // get out seperatly to accees when adding book to list
+                this.bookID = this.generateKey()
+                this.key = this.generateKey()
 
-                /* 
-                    - create book
-                    - append book to users array (append)
-                */
-               
-                this.userId = this.result._id
+                // add new book to books array
+                this.addNewBook(this.bookID, this.key) 
 
-                console.log('USERID', this.userId)
-                console.log('result', this.result) 
-                console.log('USER FIREBASE', this.user)
-                console.log(this.title, this.author, this.description);
+                // create book object 
+                const book = {
+                    _type: 'reference',
+                    _key: this.key,
+                    _ref: this.bookID,
+                } 
+
+                // add book to sanity and reset input field
+                this.addBookToUsersList(book)
+                this.resetFields()
             },
 
-            // error with target
+            addNewBook(bookID, key) {
+                this.createBook(
+                    bookID,
+                    key,
+                    this.title,
+                    this.author,
+                    this.description,
+                    this.category,
+                    this.rating
+                )
+            },
+
+            async addBookToUsersList(book) {
+                // fetch data from specific user (sanity)
+                await this.sanityFetch(userQuery, {
+                    username: this.user.data.displayName
+                })
+                
+                // then access userID and add book to current users book list
+                this.userID = this.result._id
+                this.addBookToUsersListSanity(this.userID, book)
+            }, 
+
+            resetFields() {
+                this.title = ''
+                this.author = ''
+                this.description = ''
+                this.category = ''
+                this.rating = ''
+            },
+            
             getCategory(event) {
                 return this.category = event.target.value;
             },
 
             getRating(event) {
                 return this.rating = event.currentTarget.value;
+                
+            },
+
+            // Source: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+            generateKey() {
+                let result = '';
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                const charactersLength = characters.length;
+                let counter = 0;
+
+                while (counter < 10) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                    counter += 1;
+                }
+                return result;
             }
         },
 
