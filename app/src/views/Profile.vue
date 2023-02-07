@@ -28,6 +28,7 @@
       font-size: 3em;
       padding: 100px;
       height: 100%;
-      background-color: #f7f4ef;
+      background-color: var(--background);
+      color: var(--text);
    }
 </style> 

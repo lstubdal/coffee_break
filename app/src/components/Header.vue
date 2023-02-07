@@ -11,12 +11,12 @@
 
                 <div class="hamburgerContainer">
                     <svg @click="toggleMenu()" v-if="!menuClicked" class="hamburger" width="60" height="25" viewBox="0 0 57 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 0H57V5.33333H0V0ZM11.5 13.3333H57V18.6667H11.5V13.3333ZM27 26.6667H57V32H27V26.6667Z" fill="#323424"/>
+                        <path d="M0 0H57V5.33333H0V0ZM11.5 13.3333H57V18.6667H11.5V13.3333ZM27 26.6667H57V32H27V26.6667Z" fill="#2E6390"/>
                     </svg>
 
                     <div class="hamburger--clicked" v-if="menuClicked">
                         <svg class="hamburger__exit" @click="toggleMenu()" width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M79.7655 76.4844C79.981 76.6998 80.1519 76.9556 80.2685 77.2371C80.3851 77.5186 80.4451 77.8203 80.4451 78.125C80.4451 78.4297 80.3851 78.7314 80.2685 79.0129C80.1519 79.2944 79.981 79.5502 79.7655 79.7656C79.5501 79.9811 79.2943 80.152 79.0128 80.2686C78.7313 80.3852 78.4296 80.4452 78.1249 80.4452C77.8202 80.4452 77.5185 80.3852 77.237 80.2686C76.9555 80.152 76.6997 79.9811 76.4843 79.7656L49.9999 53.3203L23.5155 79.7656C23.0804 80.2007 22.4902 80.4452 21.8749 80.4452C21.2595 80.4452 20.6694 80.2007 20.2343 79.7656C19.7991 79.3305 19.5547 78.7404 19.5547 78.125C19.5547 77.5097 19.7991 76.9195 20.2343 76.4844L46.6796 50L20.2343 23.5156C19.7991 23.0805 19.5547 22.4904 19.5547 21.875C19.5547 21.2597 19.7991 20.6695 20.2343 20.2344C20.6694 19.7993 21.2595 19.5548 21.8749 19.5548C22.4902 19.5548 23.0804 19.7993 23.5155 20.2344L49.9999 46.6797L76.4843 20.2344C76.9194 19.7993 77.5095 19.5548 78.1249 19.5548C78.7402 19.5548 79.3304 19.7993 79.7655 20.2344C80.2006 20.6695 80.4451 21.2597 80.4451 21.875C80.4451 22.4904 80.2006 23.0805 79.7655 23.5156L53.3202 50L79.7655 76.4844Z" fill="white"/>
+                            <path d="M79.7655 76.4844C79.981 76.6998 80.1519 76.9556 80.2685 77.2371C80.3851 77.5186 80.4451 77.8203 80.4451 78.125C80.4451 78.4297 80.3851 78.7314 80.2685 79.0129C80.1519 79.2944 79.981 79.5502 79.7655 79.7656C79.5501 79.9811 79.2943 80.152 79.0128 80.2686C78.7313 80.3852 78.4296 80.4452 78.1249 80.4452C77.8202 80.4452 77.5185 80.3852 77.237 80.2686C76.9555 80.152 76.6997 79.9811 76.4843 79.7656L49.9999 53.3203L23.5155 79.7656C23.0804 80.2007 22.4902 80.4452 21.8749 80.4452C21.2595 80.4452 20.6694 80.2007 20.2343 79.7656C19.7991 79.3305 19.5547 78.7404 19.5547 78.125C19.5547 77.5097 19.7991 76.9195 20.2343 76.4844L46.6796 50L20.2343 23.5156C19.7991 23.0805 19.5547 22.4904 19.5547 21.875C19.5547 21.2597 19.7991 20.6695 20.2343 20.2344C20.6694 19.7993 21.2595 19.5548 21.8749 19.5548C22.4902 19.5548 23.0804 19.7993 23.5155 20.2344L49.9999 46.6797L76.4843 20.2344C76.9194 19.7993 77.5095 19.5548 78.1249 19.5548C78.7402 19.5548 79.3304 19.7993 79.7655 20.2344C80.2006 20.6695 80.4451 21.2597 80.4451 21.875C80.4451 22.4904 80.2006 23.0805 79.7655 23.5156L53.3202 50L79.7655 76.4844Z" fill="#EAE8D9"/>
                         </svg>
 
                         <RouterLink :to="{ name: 'dashboard'}" class="hamburger--clicked-link">Dashboard</RouterLink>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             
-            <Router-Link :to="{ name: 'login'}" v-else class="header__user--notLoggedIn">Login</Router-Link>
+            <Router-Link :to="{ name: 'login'}" v-else class="header__user--notLoggedIn" @click="toggleMenu">Login</Router-Link>
         </div>
     </header>
  </template>
@@ -41,7 +41,7 @@
                 this.$store.dispatch('fetchUser', user)
             })
 
-            this.toggleMenu()
+            //this.toggleMenu()
         },
 
         data() {
@@ -95,15 +95,16 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        align-items: center;
         padding: 20px;
         font-family: var(--second-font);
         background-color: transparent;
+        border-bottom: 0.5px solid rgb(217, 216, 216);
+        color: var(--text);
     }
 
     .header__logo {
         text-decoration: none;
-        color: black;
+        color: var(--text)
     }
 
     .header--loggedIn {
@@ -122,8 +123,8 @@
     .header__user--notLoggedIn {
         margin-right: 15px;
         padding: 8px 40px;
-        color: var(--highlight);
-        border: 2px solid var(--highlight);
+        color: var(--text);
+        border: 2px solid var(--text);
         background-color:none;
         text-decoration: none;
         font-family: var(--second-font);
@@ -133,9 +134,9 @@
     }
 
     .header__user--notLoggedIn:hover {
-        color: white;
-        border: 2px solid var(--highlight);
-        background-color: var(--highlight);
+        color: var(--background);
+        border: 2px solid var(--text);
+        background-color: var(--text);
     }
 
     .hamburgerContainer {
@@ -154,18 +155,18 @@
         justify-content: center;
         align-items: center;
         padding: 20px;
-        color: white;
-        background-color: var(--highlight);
+        color: var(--background);
+        background-color: var(--text);
     }
     
     .hamburger--clicked-link {
-        color: white;
+        color: var(--background);
         text-decoration: none;
         padding-bottom: 20px;
     }
 
     .hamburger--clicked-link:hover {
-        color: rgb(236, 51, 202); 
+        color: var(--soft-highlight); 
     }
 
     .hamburger__logout {
@@ -175,7 +176,7 @@
         background: none;
         border: 2px solid;
         border-radius: 2px;
-        color: white;
+        color: var(--background);
         cursor: pointer;
     }
 
@@ -188,6 +189,6 @@
     }
 
     .hamburger__logout:hover {
-        color: rgb(236, 51, 202); 
+        color: var(--soft-highlight); 
     }
 </style> 
