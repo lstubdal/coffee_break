@@ -28,7 +28,7 @@ export default {
              })
         },
 
-        createBook(bookID, key, title, author, description, category, rating) {
+        createBook(bookID, key, title, author, description, category, rating, username) {
             const newBook = {
                 _type: 'book',
                 _id: bookID,
@@ -37,7 +37,8 @@ export default {
                 author: author,
                 description: description,
                 category: category,
-                rating: rating
+                rating: rating,
+                recommender: username
             }
 
             sanity.create(newBook).then((res) => {

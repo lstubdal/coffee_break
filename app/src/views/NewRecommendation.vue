@@ -151,7 +151,8 @@
                     this.author,
                     this.description,
                     this.category,
-                    this.rating
+                    this.rating,
+                    this.user.data.displayName // recommender of book
                 )
             },
 

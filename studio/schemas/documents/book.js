@@ -50,6 +50,14 @@ export default {
                     ...rating
                 ]
             }
+        },
+
+        {
+            title: 'The person writing this recommendation',
+            name: 'recommender',
+            description: 'Userame goes here',
+            type: 'string',
+            readOnly: true // will automaticly be accesed when user is logged in
         }
     ]
 }
