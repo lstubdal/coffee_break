@@ -20,6 +20,7 @@
                         </svg>
 
                         <RouterLink :to="{ name: 'dashboard'}" class="hamburger--clicked-link">Dashboard</RouterLink>
+                        <RouterLink :to="{ name: 'recommendation'}" class="hamburger--clicked-link">New recommendation +</RouterLink>
                         <RouterLink :to="{ name: 'profile', params: { username:  `${getUserName}` }}" class="hamburger--clicked-link">My page</RouterLink>
                         <button class="hamburger__logout" @click.prevent="logOut">Log out</button>
                     </div>
@@ -148,7 +149,7 @@
     }
 
     .hamburger--clicked {
-        width: 210px;
+        width: 240px;
         height: 270px;
         display: flex;
         flex-direction: column;
@@ -178,6 +179,7 @@
         border-radius: 2px;
         color: var(--background);
         cursor: pointer;
+        margin-top: 20px;
     }
 
     .hamburger__exit {
