@@ -129,7 +129,7 @@
                 this.key = this.generateKey()
 
                 // add new book to books array
-                this.addNewBook(this.bookID, this.key) 
+                //this.addNewBook(this.bookID, this.key) 
 
                 // create book object 
                 const book = {
@@ -139,7 +139,7 @@
                 } 
 
                 // add book to sanity and reset input field
-                this.addBookToUsersList(book)
+                //this.addBookToUsersList(book)
                 this.resetFields()
             },
 
@@ -180,8 +180,7 @@
             },
 
             getRating(event) {
-                this.rating = event.currentTarget.value;
-                console.log(this.rating)
+                this.rating = parseInt(event.currentTarget.value);
 
                 Object.keys(this.dices).forEach((dice, index)  => {
                     if (dice == this.rating) {
@@ -233,13 +232,13 @@
         background: var(--text);
         border: 1px solid var(--text);
         border-radius: 2px;
-        color: white;
+        color: var(--background);
         font-size: 1em;
         cursor: pointer;
     }
 
     .recommendation__share:hover {
-        background-color: white;
+        background-color: var(--background);
         color: var(--text);
         border: 4px solid var(--text);
     }
