@@ -4,6 +4,7 @@ export default [
     { title: 'Novel', value: 'Novel' },
     { title: 'Mystery', value: 'Mystery' },
     { title: 'Thriller/Horror', value: 'Thriller/Horror' },
+    { title: 'Self-biography', value: 'Self-biography'},
     { title: 'Sci-Fi', value: 'Sci-Fi' },
     { title: 'Self-help', value: 'Self-help' },
     { title: 'Art', value: 'Art' },

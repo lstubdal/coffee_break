@@ -103,7 +103,7 @@
                 description: '',
                 category: '',
                 rating: '',
-                genres: ['Fantasy', 'Romance', 'Novel', 'Dystopian', 'Mystery', 'Thriller/Horror', 'Sci-fi', 'Self-help', 'Art', 'Health & Lifestyle', 'History', 'Motivational' ],
+                genres: ['Fantasy', 'Romance', 'Novel', 'Dystopian', 'Mystery', 'Thriller/Horror', 'Self-biography', 'Sci-fi', 'Self-help', 'Art', 'Health & Lifestyle', 'History', 'Motivational' ],
                 diceHeight: 40,
                 diceWidth: 40,
                 userID: '',
@@ -129,7 +129,7 @@
                 this.key = this.generateKey()
 
                 // add new book to books array
-                //this.addNewBook(this.bookID, this.key) 
+                this.addNewBook(this.bookID, this.key) 
 
                 // create book object 
                 const book = {
@@ -139,7 +139,7 @@
                 } 
 
                 // add book to sanity and reset input field
-                //this.addBookToUsersList(book)
+                this.addBookToUsersList(book)
                 this.resetFields()
             },
 
