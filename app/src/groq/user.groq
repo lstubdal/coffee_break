@@ -1,6 +1,7 @@
 *[_type == 'user' && username == $username][0] {
   _id,
   _updatedAt,
+  _reference,
   username,
   books[] ->    
 }
