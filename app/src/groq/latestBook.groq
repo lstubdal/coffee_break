@@ -1,0 +1,6 @@
+*[_type == 'book'] | order(_createdAt)[-1] {
+  _id,
+  _updatedAt,
+  title
+}
+
