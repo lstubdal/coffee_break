@@ -25,7 +25,8 @@ export default {
             name: 'description',
             type: 'text',
             description: 'What makes the book worth sharing?',
-            validation: Rule => Rule.required().min(5).error('Book must have a description')
+            validation: Rule => Rule.required().min(5).error('Book must have a description'),
+            validation: Rule => Rule.required().max(1000).error('To many words!')
         },
 
         {
