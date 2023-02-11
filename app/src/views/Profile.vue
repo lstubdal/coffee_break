@@ -1,13 +1,18 @@
 <template>
    <div class="profile">
+      <RecommendButton />
+
+      <section>
+         
+      </section>
       <p>Your recommended books</p>
 
-      <RouterLink :to="{name: 'recommendation'}">Recommend a book!</RouterLink>
    </div>
  </template>
  
  <script>
     import { getAuth } from 'firebase/auth';
+    import RecommendButton from '../components/RecommendButton.vue'
 
     export default {
         created() {
@@ -16,16 +21,20 @@
             auth.onAuthStateChanged(user => {
                 this.$store.dispatch('fetchUser', user)
             })
+        },
+
+        components: {
+         RecommendButton
         }
     }
  </script>
 <style>
    .profile {
       display: flex;
-      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       font-family: var(--second-font);
       font-weight: 300;
-      font-size: 3em;
       padding: 100px;
       height: 100%;
       background-color: var(--background);
