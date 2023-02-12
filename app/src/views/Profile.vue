@@ -1,26 +1,27 @@
 <template>
    <div class="profile">
-      <RecommendButton />
+      <RecommendButton  class="profile__button" />
 
       <section>
-         
+         <p>Your recommended books</p>
+
+
       </section>
-      <p>Your recommended books</p>
 
    </div>
  </template>
  
  <script>
     import { getAuth } from 'firebase/auth';
-    import RecommendButton from '../components/RecommendButton.vue'
+    import RecommendButton from '../components/RecommendButton.vue';
 
     export default {
         created() {
             // get the current user by setting an observer on the Auth object:
-            const auth = getAuth()
+           /*  const auth = getAuth()
             auth.onAuthStateChanged(user => {
                 this.$store.dispatch('fetchUser', user)
-            })
+            }) */
         },
 
         components: {
@@ -36,8 +37,15 @@
       font-family: var(--second-font);
       font-weight: 300;
       padding: 100px;
-      height: 100%;
+      height: 200vh;
       background-color: var(--background);
       color: var(--text);
+      
+   }
+
+   .profile__button {
+      position: fixed;
+      right: 70;
+      bottom: 70;
    }
 </style> 
