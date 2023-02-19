@@ -14,8 +14,8 @@
                         <path d="M0 0H57V5.33333H0V0ZM11.5 13.3333H57V18.6667H11.5V13.3333ZM27 26.6667H57V32H27V26.6667Z" fill="#2E6390"/>
                     </svg>
 
-                    <div class="hamburger--clicked" v-if="menuClicked">
-                        <svg class="hamburger__exit" @click="toggleMenu()" width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="hamburger--clicked" v-if="menuClicked" v-click-outside="onClickOutside">
+                        <svg class="hamburger__exit" @click="toggleMenu()"  width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M79.7655 76.4844C79.981 76.6998 80.1519 76.9556 80.2685 77.2371C80.3851 77.5186 80.4451 77.8203 80.4451 78.125C80.4451 78.4297 80.3851 78.7314 80.2685 79.0129C80.1519 79.2944 79.981 79.5502 79.7655 79.7656C79.5501 79.9811 79.2943 80.152 79.0128 80.2686C78.7313 80.3852 78.4296 80.4452 78.1249 80.4452C77.8202 80.4452 77.5185 80.3852 77.237 80.2686C76.9555 80.152 76.6997 79.9811 76.4843 79.7656L49.9999 53.3203L23.5155 79.7656C23.0804 80.2007 22.4902 80.4452 21.8749 80.4452C21.2595 80.4452 20.6694 80.2007 20.2343 79.7656C19.7991 79.3305 19.5547 78.7404 19.5547 78.125C19.5547 77.5097 19.7991 76.9195 20.2343 76.4844L46.6796 50L20.2343 23.5156C19.7991 23.0805 19.5547 22.4904 19.5547 21.875C19.5547 21.2597 19.7991 20.6695 20.2343 20.2344C20.6694 19.7993 21.2595 19.5548 21.8749 19.5548C22.4902 19.5548 23.0804 19.7993 23.5155 20.2344L49.9999 46.6797L76.4843 20.2344C76.9194 19.7993 77.5095 19.5548 78.1249 19.5548C78.7402 19.5548 79.3304 19.7993 79.7655 20.2344C80.2006 20.6695 80.4451 21.2597 80.4451 21.875C80.4451 22.4904 80.2006 23.0805 79.7655 23.5156L53.3202 50L79.7655 76.4844Z" fill="#EAE8D9"/>
                         </svg>
 
@@ -34,6 +34,9 @@
  
  <script>
     import { getAuth } from 'firebase/auth';
+    import vClickOutside from 'click-outside-vue3' // register when clicked outside of menu
+
+
     export default {
         created() {
             // get the current user by setting an observer on the Auth object:
@@ -70,7 +73,15 @@
 
             toggleMenu(){
                 this.menuClicked = !this.menuClicked;
+            },
+            
+            onClickOutside() {
+                this.toggleMenu()
             }
+        },
+
+        directives: {
+            clickOutside: vClickOutside.directive
         }
     }
 </script>
