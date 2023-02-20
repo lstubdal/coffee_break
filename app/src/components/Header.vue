@@ -109,6 +109,7 @@
         font-family: var(--second-font);
         background-color: transparent;
         border-bottom: 0.5px solid rgb(211, 209, 209);
+        box-shadow: 0 2px 4px -4px #373636;
         color: var(--text);
         z-index: 10;
     }
