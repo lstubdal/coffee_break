@@ -1,8 +1,8 @@
 <template>
     <header class="header">
         <Router-Link :to="{ name: 'dashboard'}" class="header__logo"> 
-            <h1 class="header--loggedIn" v-if="user.loggedIn">BW</h1>
-            <h1  v-else>BOOKWORMS</h1>
+            <h1 class="header--loggedIn" v-if="user.loggedIn">CB</h1>
+            <h1  v-else>coffe break</h1>
         </Router-Link>
 
         <div class="header__user">
