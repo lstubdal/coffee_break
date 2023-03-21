@@ -4,6 +4,17 @@
 
       <p class="profile__title">Your recommended books</p>
       <section>
+         <div class="books" v-if="!loading">
+            <Book 
+               :recommender="book.recommender"
+               :title="book.title"
+               :author="book.author"
+               :description="book.description"
+               :category="book.category"
+               :rating="book.rating"
+               v-for="book in this.result"
+            />
+      </div>
 
 
       </section>
@@ -16,7 +27,8 @@
    import RecommendButton from '../components/RecommendButton.vue';
    import { getAuth } from 'firebase/auth';
    import sanityMixin from '../mixins/sanityMixin';
-   import userQuery from  '../groq/user.groq?raw';
+   import usersBooksQuery from '../groq/usersBooks.groq?raw';
+   import Book from '../components/Book.vue';
 
 
    export default {
@@ -29,29 +41,19 @@
                this.$store.dispatch('fetchUser', user).then(() => {
                   console.log('1. auth: ', user.displayName)
                   this.getUsersBooks(user.displayName)
+                  
                }); 
             })
       },
 
       components: {
-         RecommendButton
+         RecommendButton,
+         Book
       },
 
       methods: {
-         async authenticate() {
-
-          /*   const auth = getAuth()
-            auth.onAuthStateChanged(user => {
-               this.$store.dispatch('fetchUser', user).then(() => {
-                  console.log('1. auth: ', user.displayName)
-                  console.log('1. auth: ', user.email)
-               });
-               
-            }) */
-         },
-
          async getUsersBooks(username) {
-            await this.sanityFetch(userQuery, {
+            await this.sanityFetch(usersBooksQuery, {
                username: username
             })
 
@@ -63,6 +65,10 @@
       computed:{
          user() {
             return this.$store.getters.getUser
+         },
+
+         books() {
+            return this.$store.getters.getAllBooks;
          }
          
 
