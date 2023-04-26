@@ -5,14 +5,19 @@ export default {
         return {
             user: {
                 loggedIn: false,
-                data: null
-            }
+                data: null,
+            },
+            allBooks: []
         }
     },
 
     getters: {
         getUser(state) {
             return state.user // return user objet from state
+        },
+
+        getAllBooks(state) {
+            return state.allBooks
         }
     },
 
@@ -25,7 +30,12 @@ export default {
         // set changes to the users data
         SET_USER(state, data) {
             state.user.data = data 
+        },
+
+        SET_ALL_BOOKS(state, books) {
+            state.allBooks = books;
         }
+
     },
 
     actions: {  // Actions COMMITS the mutations
@@ -45,7 +55,7 @@ export default {
         },
 
         // log in with signInWithEmailAndPassword from fb-auth
-        async logIn(context, {email, password}) {
+        async logIn(context, {email, password, username}) {
             const response = await signInWithEmailAndPassword(getAuth(), email, password)
             if (response) {
                 context.commit('SET_USER', response.user)
@@ -70,6 +80,11 @@ export default {
             } else {
                 context.commit('SET_USER', null);
             }
+        },
+
+        updateBooks(context, books) {
+            console.log('all books', books)
+            context.commit('SET_ALL_BOOKS', books)
         }
 
     }

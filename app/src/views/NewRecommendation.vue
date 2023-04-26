@@ -88,12 +88,13 @@
 
     export default {
         mixins: [sanityMixin],
+        
         created () {
              // get the current user (frorm firebase) by setting an observer on the Auth object:
             const auth = getAuth()
-            auth.onAuthStateChanged(user => {
-                this.$store.dispatch('fetchUser', user)
-            })            
+                auth.onAuthStateChanged(user => {
+                    this.$store.dispatch('fetchUser', user)
+                })            
         },
 
         data() {
@@ -131,7 +132,7 @@
                 // add new book to books array
                 this.addNewBook(this.bookID, this.key) 
 
-                // create book object 
+                // create from current book object 
                 const book = {
                     _type: 'reference',
                     _key: this.key,
@@ -171,7 +172,7 @@
                 this.title = ''
                 this.author = ''
                 this.description = ''
-                this.category = ''
+                this.category = '' // 'OBS' => figure out how to reset field after share
                 this.rating = ''
             },
             
@@ -185,7 +186,6 @@
                 Object.keys(this.dices).forEach((dice, index)  => {
                     if (dice == this.rating) {
                         this.dices[index+1] = true
-                        console.log("fe", this.dices[index+1])
                     } else {
                         this.dices[index+1] = false
                     }
@@ -228,19 +228,19 @@
 
     .recommendation__share {
         margin-top: 30px;
-        padding: 12px 25px;
+        padding: 20px 50px;
         background: var(--text);
         border: 1px solid var(--text);
         border-radius: 2px;
         color: var(--background);
-        font-size: 1em;
+        font-size: 1.3em;
+        border: 4px solid var(--text);
         cursor: pointer;
     }
 
     .recommendation__share:hover {
         background-color: var(--background);
         color: var(--text);
-        border: 4px solid var(--text);
     }
 
     .bookInfo {

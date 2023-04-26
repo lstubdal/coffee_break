@@ -42,6 +42,8 @@
                         email: this.email,
                         password: this.password
                     })
+                    // fetch all users book into store.js
+                    
                     this.$router.push({name: 'profile', params: {username: this.user.data.displayName}}) // navigate to current userprofile
                 }
                 catch(err) {

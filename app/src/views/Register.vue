@@ -51,7 +51,7 @@
                         password: this.password,
                         name: this.username
                     })
-                    this.$router.push({name: `${this.user.data.displayName}`})
+                    this.$router.push({name: 'profile', params: {username: this.user.data.displayName}})
                 }  
                 catch (err) {
                     this.error = err.message

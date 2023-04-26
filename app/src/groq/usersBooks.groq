@@ -1,0 +1,10 @@
+*[_type == 'book' && recommender == $username ]| order(_createdAt) {
+    _id,
+    _createdAt,
+    title,
+    author, 
+    description,
+    category, 
+    rating,
+    recommender
+}

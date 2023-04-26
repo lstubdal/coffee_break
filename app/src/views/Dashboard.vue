@@ -1,7 +1,8 @@
 <template>
    <div v-if="user.loggedIn" class="dashboard--loggedIn">
       <p class="dashboard__heading">What have others been reading?</p>
-      <div class="books" v-if="!loading" v-for="book in this.result">
+
+      <div class="books" v-if="!loading">
          <Book 
             :recommender="book.recommender"
             :title="book.title"
@@ -9,6 +10,7 @@
             :description="book.description"
             :category="book.category"
             :rating="book.rating"
+            v-for="book in this.result"
          />
       </div>
    </div>
@@ -34,6 +36,7 @@
          })
 
          await this.sanityFetch(allBooks);
+         this.$store.dispatch('updateBooks', this.result)
         },
 
         computed: {
@@ -58,24 +61,23 @@
    }
 
    .dashboard--loggedIn {
-      height: 100%;
       padding: 80px;
       background-color: var(--background);
       color: var(--text)
-     
    }
 
    .dashboard__heading {
       font-family: var(--second-font);
       font-weight: 400;
       font-size: 2.4em;
+      padding: 50px 0px;
    }
 
-/*    .books {
+   .books {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr );
       grid-auto-rows: auto;
-      border: 5px solid red;
-   } */
+      gap: 30px;
+   }
 </style>
  

@@ -7,7 +7,7 @@ import NewRecommendation from './views/NewRecommendation.vue';
 export default [
     {
         name: 'dashboard',
-        path: '/dashboard',
+        path: '/',
         component: Dashboard
     },
     
@@ -25,7 +25,7 @@ export default [
 
     {
         name: 'profile',
-        path: '/:username',
+        path: '/:username', /* /profile/:username? fix router issue console */
         component: Profile
     },
 

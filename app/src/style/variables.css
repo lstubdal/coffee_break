@@ -5,5 +5,10 @@
 
     /*** colors ***/
     --highlight: #323424;
+    --text: #2E6390;
     --soft-highlight: #D1A784;
+    --background: #EAE8D9;
 }
+
+
+/* update colors variables name to --light ---main ---dark(?) */
